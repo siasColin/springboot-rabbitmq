@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>rabbitmq topic provider</title>
+	</head>
+	<body>
+		<div>
+			<label>用户debug日志：</label>
+			<input type="text" value="用户debug日志"  name="userDebugLogMsg" id="userDebugLogMsg" placeholder="userDebugLogMsg" />
+			<label>用户info日志：</label>
+			<input type="text" value="用户info日志"  name="userInfoLogMsg" id="userInfoLogMsg" placeholder="userInfoLogMsg" />
+			<label>用户warn日志：</label>
+			<input type="text" value="用户warn日志"  name="userWarnLogMsg" id="userWarnLogMsg" placeholder="userWarnLogMsg" />
+			<label>用户error日志：</label>
+			<input type="text" value="用户error日志"  name="userErrorLogMsg" id="userErrorLogMsg" placeholder="userErrorLogMsg" />
+			<button type="button" onclick="submitUserLog();">提交</button>
+			<br>
+			<br>
+			<label>订单debug日志：</label>
+			<input type="text" value="订单debug日志"  name="orderDebugLogMsg" id="orderDebugLogMsg" placeholder="orderDebugLogMsg" />
+			<label>订单info日志：</label>
+			<input type="text" value="订单info日志"  name="orderInfoLogMsg" id="orderInfoLogMsg" placeholder="orderInfoLogMsg" />
+			<label>订单warn日志：</label>
+			<input type="text" value="订单warn日志"  name="orderWarnLogMsg" id="orderWarnLogMsg" placeholder="orderWarnLogMsg" />
+			<label>订单error日志：</label>
+			<input type="text" value="订单error日志"  name="orderErrorLogMsg" id="orderErrorLogMsg" placeholder="orderErrorLogMsg" />
+			<button type="button" onclick="submitOrderLog();">提交</button>
+			<br>
+			<br>
+			<label>商品debug日志：</label>
+			<input type="text" value="商品debug日志"  name="productDebugLogMsg" id="productDebugLogMsg" placeholder="productDebugLogMsg" />
+			<label>商品info日志：</label>
+			<input type="text" value="商品info日志"  name="productInfoLogMsg" id="productInfoLogMsg" placeholder="productInfoLogMsg" />
+			<label>商品warn日志：</label>
+			<input type="text" value="商品warn日志"  name="productWarnLogMsg" id="productWarnLogMsg" placeholder="productWarnLogMsg" />
+			<label>商品error日志：</label>
+			<input type="text" value="商品error日志"  name="productErrorLogMsg" id="productErrorLogMsg" placeholder="productErrorLogMsg" />
+			<button type="button" onclick="submitProductLog();">提交</button>
+		</div>
+	<script th:src="@{/js/jquery-2.1.4.min.js}" src="../static/js/jquery-2.1.4.min.js"></script>
+	<script th:src="@{/js/common/common.js}" src="../static/js/common/common.js"></script>
+	<script>
+		function submitUserLog() {
+		    var params = {};
+            params.debugMsg = $("#userDebugLogMsg").val();
+            params.infoMsg = $("#userInfoLogMsg").val();
+            params.warnMsg = $("#userWarnLogMsg").val();
+            params.errorMsg = $("#userErrorLogMsg").val();
+            $.ajax({
+                url:Common.ctxPath+"userTopic/send",
+                type:"POST",
+                data:params,
+                dataType: "json",
+                success:function(rsp){
+                    if(rsp.returnCode == '0'){
+                        //成功
+						alert(rsp.returnMessage);
+                    }else{
+                        alert(rsp.returnMessage);
+                    }
+                },
+                error:function(rsp){
+                    alert("服务器连接失败！");
+                }
+            });
+        }
+        function submitOrderLog(){
+            var params = {};
+            params.debugMsg = $("#orderDebugLogMsg").val();
+            params.infoMsg = $("#orderInfoLogMsg").val();
+            params.warnMsg = $("#orderWarnLogMsg").val();
+            params.errorMsg = $("#orderErrorLogMsg").val();
+            $.ajax({
+                url:Common.ctxPath+"orderTopic/send",
+                type:"POST",
+                data:params,
+                dataType: "json",
+                success:function(rsp){
+                    if(rsp.returnCode == '0'){
+                        //成功
+                        alert(rsp.returnMessage);
+                    }else{
+                        alert(rsp.returnMessage);
+                    }
+                },
+                error:function(rsp){
+                    alert("服务器连接失败！");
+                }
+            });
+		}
+        function submitProductLog(){
+            var params = {};
+            params.debugMsg = $("#productDebugLogMsg").val();
+            params.infoMsg = $("#productInfoLogMsg").val();
+            params.warnMsg = $("#productWarnLogMsg").val();
+            params.errorMsg = $("#productErrorLogMsg").val();
+            $.ajax({
+                url:Common.ctxPath+"productTopic/send",
+                type:"POST",
+                data:params,
+                dataType: "json",
+                success:function(rsp){
+                    if(rsp.returnCode == '0'){
+                        //成功
+                        alert(rsp.returnMessage);
+                    }else{
+                        alert(rsp.returnMessage);
+                    }
+                },
+                error:function(rsp){
+                    alert("服务器连接失败！");
+                }
+            });
+        }
+	</script>
+	</body>
+
+</html>

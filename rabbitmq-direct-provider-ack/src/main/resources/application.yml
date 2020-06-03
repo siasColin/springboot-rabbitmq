@@ -1,0 +1,42 @@
+server:
+  port: 8005
+  servlet:
+    context-path: /rabbitmq-direct-provider-ack
+
+spring:
+  application:
+    name: rabbitmq-direct-provider-ack #服务名称
+  thymeleaf:
+    # 关闭缓存，即时刷新，上线生产环境需改成true
+    cache: false
+  rabbitmq:
+    host: 192.168.253.130
+    port: 5672
+    username: sxf
+    password: 123456
+    #确认消息已发送到交换机(Exchange)
+    publisher-confirm-type: correlated
+    #确认消息已发送到队列(Queue)
+    publisher-returns: true
+    listener:
+      type: simple
+      simple:
+        acknowledge-mode: manual #手动确认
+  #        prefetch: 1 #限制每次发送一条数据。
+  #        concurrency: 3 #消费端的监听个数(即@RabbitListener开启几个线程去处理数据。)
+  #        max-concurrency: 3 #消费端的监听最大个数
+  resources:
+    static-locations: classpath:static/,file:static/
+
+#自定义交换器配置信息
+mq:
+  config:
+    #设置交换器的名称
+    exchange:
+      log: log.direct
+    #队列的名称
+    queue:
+      log: log
+    #路由键
+    routingkey:
+      log: log
