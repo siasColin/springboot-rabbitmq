@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Scope;
  * @Author: sxf
  * @Date: 2020-6-2
  * @Description:
- *      扇型交换器，这个交换机没有路由键概念，就算绑了路由键也是无视的。
+ *      扇型交换器（广播），这个交换机没有路由键概念，就算绑了路由键也是无视的。
  *      交换器在接收到消息后，会直接转发到绑定到它上面的所有队列。
  */
 

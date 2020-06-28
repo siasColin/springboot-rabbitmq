@@ -15,7 +15,7 @@ import java.util.Map;
  * @Package: com.colin.rabbitmq.direct.providerack.config
  * @Author: sxf
  * @Date: 2020-6-2
- * @Description: 直连型交换机 配置
+ * @Description: 直连型交换器 配置
  */
 
 @Configuration

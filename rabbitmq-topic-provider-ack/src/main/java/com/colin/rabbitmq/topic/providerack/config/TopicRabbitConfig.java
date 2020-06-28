@@ -15,7 +15,7 @@ import java.util.Map;
  * @Package: com.colin.rabbitmq.topic.providerack.config
  * @Author: sxf
  * @Date: 2020-6-2
- * @Description:
+ * @Description: 主题模式 交换器
  */
 
 @Configuration
