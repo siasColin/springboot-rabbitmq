@@ -1,10 +1,6 @@
 # CentOS7安装RabbitMQ
 
-### 1、参考地址
-
-[https://www.cnblogs.com/fengyumeng/p/11133924.html]()
-
-### 2、环境检查
+### 1、环境检查
 
 - 检查hostname
 
@@ -20,9 +16,9 @@
   
   ![hosts](images/hosts.png)
 
-### 3、安装erlang
+### 2、安装erlang
 
-#### 3.1、安装依赖
+#### 2.1、安装依赖
 
 ```java
 yum -y install gcc glibc-devel make ncurses-devel openssl-devel xmlto perl wget gtk2-devel binutils-devel
@@ -30,7 +26,7 @@ yum -y install gcc glibc-devel make ncurses-devel openssl-devel xmlto perl wget 
 
 [erlang官网](https://www.erlang.org/downloads)
 
-#### 3.2、开始安装
+#### 2.2、开始安装
 
 - 下载（会比较慢，请耐心等待）
 
@@ -102,7 +98,7 @@ yum -y install gcc glibc-devel make ncurses-devel openssl-devel xmlto perl wget 
 
   - 输入halt().命令退出来（那个点号别忘记）
 
-### 4、安装RabbitMQ
+### 3、安装RabbitMQ
 
 rabbitmq下载地址：
 
@@ -198,7 +194,7 @@ https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.15
 
   ### 
 
-### 5、用户管理
+### 4、用户管理
 
 - 查看所有用户
 
@@ -244,7 +240,7 @@ https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.15
 
   ![RabbitMQ首页](images/RabbitIndex.png)
 
-### 6、关键词说明
+### 5、关键词说明
 
 ​		**原理图**
 
@@ -280,7 +276,7 @@ https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.7.15
 | **RabbitMQ 为什么需要信道？为什么不是 TCP 直接通信？**       |
 | 1. TCP 的创建和销毁开销特别大。创建需要 ==3 次握手==，销毁需要 ==4 次分手==。<br/>2. 如果不用信道，那应用程序就会以 TCP 链接 Rabbit，高峰时每秒成千上万条链接<br/>会造成资源巨大的浪费，而且操作系统每秒处理 TCP 链接数也是有限制的，必定造成性能<br/>瓶颈。<br/>3. 信道的原理是==一条线程一条通道，多条线程多条通道同用一条 TCP 链接==。一条 TCP<br/>链接可以容纳无限的信道，即使每秒成千上万的请求也不会成为性能的瓶颈。 |
 
-### 7、ACK 机制
+### 6、ACK 机制
 
 - 1）什么是消息确认ACK?
 
